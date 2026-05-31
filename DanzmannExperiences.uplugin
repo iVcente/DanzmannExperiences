@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.0",
+	"VersionName": "1.1",
 	"FriendlyName": "DanzmannExperiences",
 	"Description": "Data-driven session and Pawn configuration. Experiences define what a session loads, Actions extend them, and a Pawn Data + Component pair applies per-Pawn visuals, input, movement, camera, and abilities.",
 	"Category": "Danzmann",
