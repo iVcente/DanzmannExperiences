@@ -4,6 +4,7 @@
 
 #include "AbilitySystemComponent.h"
 #include "Animation/AnimInstance.h"
+#include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Core/CameraAsset.h"
 #include "Core/CameraAssetReference.h"
@@ -108,6 +109,17 @@ void UDanzmannPawnDataComponent::ApplyPawnData()
 		{
 			SkeletalMeshComponent->SetAnimInstanceClass(LoadedAnimationBlueprint);
 		}
+
+		SkeletalMeshComponent->SetRelativeLocationAndRotation(PawnData->MainSkeletalMeshRelativeLocation, PawnData->MainMeshRelativeRotation);
+	}
+
+	/*
+	 * Capsule collider size.
+	 */
+
+	if (UCapsuleComponent* CapsuleComponent = OwnerPawn->FindComponentByClass<UCapsuleComponent>(); IsValid(CapsuleComponent))
+	{
+		CapsuleComponent->SetCapsuleSize(PawnData->CapsuleRadius, PawnData->CapsuleHalfHeight);
 	}
 
 	/*

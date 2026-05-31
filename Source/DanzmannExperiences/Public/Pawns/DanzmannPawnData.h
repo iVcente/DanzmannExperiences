@@ -82,6 +82,18 @@ class UDanzmannPawnData : public UPrimaryDataAsset
 		 */
 		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Core|GAS", Meta = (EditCondition = bUseAbilitySystemComponent))
 		TArray<TObjectPtr<UDanzmannGameplayBundle>> GameplayBundles;
+		
+		/**
+		 * Half-height of the Pawn's root capsule collider.
+		 */
+		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Collision")
+		float CapsuleHalfHeight = 88.0f;
+
+		/**
+		 * Radius of the Pawn's root capsule collider.
+		 */
+		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Collision")
+		float CapsuleRadius = 34.0f;
 
 		/**
 		 * Skeletal mesh applied to the Pawn's MainSkeletalMesh Component.
@@ -94,4 +106,16 @@ class UDanzmannPawnData : public UPrimaryDataAsset
 		 */
 		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Visuals")
 		TSoftClassPtr<UAnimInstance> MainAnimationBlueprint = nullptr;
+
+		/**
+		 * Relative location of the main skeletal mesh against the root Component.
+		 */
+		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Visuals")
+		FVector MainSkeletalMeshRelativeLocation = FVector(0.0f, 0.0f, -88.0f);
+
+		/**
+		 * Relative rotation of the main skeletal mesh.
+		 */
+		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Visuals")
+		FRotator MainMeshRelativeRotation = FRotator(0.0f, -90.0f, 0.0f);
 };
