@@ -59,13 +59,6 @@ class UDanzmannPawnData : public UPrimaryDataAsset
 		TObjectPtr<UDanzmannInputProfile> InputProfile = nullptr;
 
 		/**
-		 * Camera Asset applied to the Pawn's UGameplayCameraComponent. Pawns without a
-		 * Gameplay Camera Component (e.g., AI Pawns) silently skip this field during apply.
-		 */
-		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Core")
-		TSoftObjectPtr<UCameraAsset> CameraAsset = nullptr;
-		
-		/**
 		 * Whether this Pawn is part of the Gameplay Ability System.
 		 */
 		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Core|GAS", Meta = (InlineEditConditionToggle))
@@ -82,6 +75,27 @@ class UDanzmannPawnData : public UPrimaryDataAsset
 		 */
 		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Core|GAS", Meta = (EditCondition = bUseAbilitySystemComponent))
 		TArray<TObjectPtr<UDanzmannGameplayBundle>> GameplayBundles;
+		
+		/**
+		 * Camera Asset applied to the Pawn's UGameplayCameraComponent. Pawns without a
+		 * Gameplay Camera Component (e.g., AI Pawns) silently skip this field during apply.
+		 */
+		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Camera")
+		TSoftObjectPtr<UCameraAsset> CameraAsset = nullptr;
+
+		/**
+		 * Minimum Control Rotation pitch (degrees) applied to the local PlayerController's
+		 * PlayerCameraManager. Only applied to locally controlled Pawns during apply.
+		 */
+		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Camera")
+		float ViewPitchMin = -80.0f;
+
+		/**
+		 * Maximum Control Rotation pitch (degrees) applied to the local PlayerController's
+		 * PlayerCameraManager. Only applied to locally controlled Pawns during apply.
+		 */
+		UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Camera")
+		float ViewPitchMax = 80.0f;
 		
 		/**
 		 * Half-height of the Pawn's root capsule collider.

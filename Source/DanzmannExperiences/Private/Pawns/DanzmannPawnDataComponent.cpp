@@ -4,6 +4,7 @@
 
 #include "AbilitySystemComponent.h"
 #include "Animation/AnimInstance.h"
+#include "Camera/PlayerCameraManager.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Core/CameraAsset.h"
@@ -17,6 +18,7 @@
 #include "Engine/SkeletalMesh.h"
 #include "GameFramework/GameplayCameraComponent.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/PlayerController.h"
 #include "GameFramework/PlayerState.h"
 #include "Net/UnrealNetwork.h"
 #include "Pawns/DanzmannPawnData.h"
@@ -179,6 +181,15 @@ void UDanzmannPawnDataComponent::ApplyPawnData()
 					CameraComponent->ActivateCameraForPlayerController(GetController<APlayerController>());
 				}
 			}
+		}
+
+		// View pitch limits clamp the Control Rotation produced by look input (applied during
+		// APlayerController::UpdateRotation -> PlayerCameraManager). Re-applied every pass so runtime
+		// PawnData swaps and possession-driven re-apply pick up the active limits
+		if (const APlayerController* PlayerController = GetController<APlayerController>(); IsValid(PlayerController) && IsValid(PlayerController->PlayerCameraManager))
+		{
+			PlayerController->PlayerCameraManager->ViewPitchMin = PawnData->ViewPitchMin;
+			PlayerController->PlayerCameraManager->ViewPitchMax = PawnData->ViewPitchMax;
 		}
 	}
 
