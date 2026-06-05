@@ -4,7 +4,7 @@ Data-driven session and Pawn configuration. An **Experience** describes what a s
 
 The design mirrors Lyra's Experience + PawnData split, trimmed down to a single runtime module and built on `ModularGameplay` for component injection.
 
-> Depends on `ModularGameplay`, `GameplayAbilities`, `GameplayCameras`, and the sibling Danzmann plugins `DanzmannAbilities`, `DanzmannInput`, and `DanzmannMovement`. All are declared in `DanzmannExperiences.uplugin` and enabled by default. Set the project's Asset Manager so `ExperienceDefinition` and `PawnData` Primary Asset Types are scanned (see [Configure the Asset Manager](#1-configure-the-asset-manager)).
+> Depends on the sibling Danzmann plugins `DanzmannAbilities`, `DanzmannInput`, and `DanzmannMovement`. It's also required to set the project's Asset Manager so `ExperienceDefinition` and `PawnData` Primary Asset Types are scanned (see [Configure the Asset Manager](#1-configure-the-asset-manager)).
 
 ## Concepts
 
